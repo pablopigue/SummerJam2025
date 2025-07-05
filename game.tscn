@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://q8vvfs11w5na"]
+
+[ext_resource type="PackedScene" uid="uid://c24qoi6cb20vh" path="res://fogata.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://cayxahy3xs3vh" path="res://player.tscn" id="1_feb5d"]
+[ext_resource type="Script" uid="uid://ddy3f56xd6g8x" path="res://game.gd" id="1_ryrav"]
+[ext_resource type="PackedScene" uid="uid://s6y34cdm522j" path="res://llamita.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://copdu70b2cuak" path="res://scripts/indicador_fogata.gd" id="3_fc0e3"]
+[ext_resource type="AudioStream" uid="uid://dj2uimbshv7mf" path="res://MUSICAYSONIDOS/TEMAPRINCIPAL.ogg" id="6_eow3j"]
+
+[node name="game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_ryrav")
+
+[node name="Player" parent="." instance=ExtResource("1_feb5d")]
+position = Vector2(123, 84)
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+
+[node name="fogata" parent="." instance=ExtResource("1_80nbo")]
+
+[node name="indicador fogata" type="CanvasLayer" parent="."]
+script = ExtResource("3_fc0e3")
+
+[node name="llamita" parent="indicador fogata" instance=ExtResource("2_e2o6t")]
+position = Vector2(-18, 285)
+
+[node name="musicafondo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_eow3j")
+volume_db = 3.811

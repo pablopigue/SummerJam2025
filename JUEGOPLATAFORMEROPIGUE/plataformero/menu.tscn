@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://ybwxsnxnvuxt"]
+
+[ext_resource type="Script" uid="uid://bhfc3snq0aolq" path="res://menu.gd" id="1_lti8b"]
+[ext_resource type="Texture2D" uid="uid://bxb3thir3607a" path="res://fondomenu.png" id="2_ouk20"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 209.0
+offset_bottom = 90.0
+script = ExtResource("1_lti8b")
+
+[node name="Fondomenu" type="Sprite2D" parent="."]
+position = Vector2(310, 106)
+scale = Vector2(0.2275, 0.150625)
+texture = ExtResource("2_ouk20")
+
+[node name="Contenedor" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 86.0
+offset_top = 95.0
+offset_right = 416.0
+offset_bottom = 254.0
+
+[node name="StartGame" type="Button" parent="Contenedor"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Empezar Aventura"
+
+[node name="Quit" type="Button" parent="Contenedor"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Salir como feka"
+
+[connection signal="pressed" from="Contenedor/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Contenedor/Quit" to="." method="_on_quit_pressed"]

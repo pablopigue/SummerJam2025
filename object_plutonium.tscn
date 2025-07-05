@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b70emidsa1xeh"]
+
+[ext_resource type="Texture2D" uid="uid://dufha4ljtnkge" path="res://CARPETADEIMAGENES/plutonio.PNG" id="1_pcqif"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gro7"]
+radius = 16.1245
+
+[node name="objectBranches" type="Node2D"]
+
+[node name="pickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickArea" groups=["recogibles"]]
+shape = SubResource("CircleShape2D_4gro7")
+
+[node name="appereance" type="Sprite2D" parent="."]
+position = Vector2(1, 2)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_pcqif")

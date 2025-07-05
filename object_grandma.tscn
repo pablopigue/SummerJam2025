@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://x4o7qfr17gii"]
+
+[ext_resource type="Texture2D" uid="uid://blscms1ux1ps5" path="res://CARPETADEIMAGENES/awela.PNG" id="1_2nx8b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2nx8b"]
+size = Vector2(49, 67)
+
+[node name="objectBranches" type="Node2D" groups=["recogibles"]]
+
+[node name="pickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickArea"]
+position = Vector2(-1.5, -1.5)
+shape = SubResource("RectangleShape2D_2nx8b")
+
+[node name="appereance" type="Sprite2D" parent="."]
+position = Vector2(2, -1)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_2nx8b")

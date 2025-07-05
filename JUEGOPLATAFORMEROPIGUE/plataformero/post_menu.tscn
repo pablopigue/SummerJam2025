@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://clgmhj0tgpmex"]
+
+[ext_resource type="Texture2D" uid="uid://bxb3thir3607a" path="res://fondomenu.png" id="1_3ytwa"]
+[ext_resource type="Script" uid="uid://bj82irrt7cx2l" path="res://post_menu.gd" id="1_w5ete"]
+
+[node name="PostMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -5.0
+offset_top = -3.0
+offset_right = 477.0
+offset_bottom = 269.0
+script = ExtResource("1_w5ete")
+
+[node name="Fondomenu" type="Sprite2D" parent="."]
+position = Vector2(-525, 225)
+texture = ExtResource("1_3ytwa")
+
+[node name="Contenedor" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -134.0
+offset_top = -39.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Siguiente" type="Button" parent="Contenedor"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Empezar Juego"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 4.0
+offset_right = 466.0
+offset_bottom = 287.0
+text = "En un bosque por perdido de la mano de Dios. Nuestro
+Aventurero, el magnifico, catcelot se dispone a cumplir
+una mision, recoger las 5 gemas del poder.
+TEN CUIDADO LOS RATONES ESTAN FURIOSOS
+
+Dicen que cuando se obtienen todas, el mismisimo 
+catres te da la enhorabuena
+
+¿Lo conseguira nuestro aventurero?
+Controles: wasd"
+
+[connection signal="pressed" from="Contenedor/Siguiente" to="." method="_on_siguiente_pressed"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://uj7v270to1tg"]
+
+[ext_resource type="Texture2D" uid="uid://bjot67b110f51" path="res://CARPETADEIMAGENES/tronco.PNG" id="1_400um"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_400um"]
+radius = 17.7781
+
+[node name="objectBranches" type="Node2D"]
+
+[node name="pickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickArea" groups=["recogibles"]]
+shape = SubResource("CircleShape2D_400um")
+
+[node name="appereance" type="Sprite2D" parent="."]
+position = Vector2(2, -1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_400um")

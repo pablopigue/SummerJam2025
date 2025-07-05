@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c24qoi6cb20vh"]
+
+[ext_resource type="Script" uid="uid://bdjv7ywaplm1x" path="res://fogata.gd" id="1_pxkx0"]
+[ext_resource type="Texture2D" uid="uid://d13an7q0r7l6c" path="res://CARPETADEIMAGENES/fogata.png" id="2_pxkx0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_66am3"]
+radius = 215.114
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_61jfa"]
+radius = 167.323
+
+[node name="fogata" type="Node2D"]
+script = ExtResource("1_pxkx0")
+
+[node name="Fogata" type="Sprite2D" parent="."]
+position = Vector2(0, -0.999969)
+scale = Vector2(0.07385, 0.07195)
+texture = ExtResource("2_pxkx0")
+
+[node name="Iluminacion" type="Area2D" parent="."]
+
+[node name="areaIlumin" type="CollisionShape2D" parent="Iluminacion"]
+unique_name_in_owner = true
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_66am3")
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(26, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-25, -10)
+shape = SubResource("CircleShape2D_61jfa")

@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6vamfvjppqax"]
+
+[ext_resource type="Script" uid="uid://b8byfvlofa6fs" path="res://scripts/history_3.gd" id="1_wgymo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5jyf"]
+bg_color = Color(0.4, 0.376471, 0.415686, 1)
+
+[node name="history3" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_wgymo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 651.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 651.0
+color = Color(0.92549, 0.839216, 0.85098, 1)
+
+[node name="next" type="Button" parent="."]
+layout_mode = 0
+offset_left = 794.0
+offset_top = 561.0
+offset_right = 1130.0
+offset_bottom = 628.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_s5jyf")
+text = "NEXT"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 52.0
+offset_right = 2017.0
+offset_bottom = 544.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "ENEMIGOS"
+
+[connection signal="pressed" from="next" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="next" to="." method="_on_next_pressed"]
