@@ -1,18 +1,75 @@
-[gd_scene load_steps=6 format=3 uid="uid://syyypdje04ib"]
+[gd_scene load_steps=12 format=3 uid="uid://syyypdje04ib"]
 
 [ext_resource type="Script" uid="uid://dqd573nhdebau" path="res://scripts/menu.gd" id="1_lti8b"]
+[ext_resource type="FontFile" uid="uid://ccgd43iyq72ok" path="res://tipografias/Firestor.ttf" id="2_4hy44"]
+[ext_resource type="Texture2D" uid="uid://d0r4ixwp5qeo8" path="res://CARPETADEIMAGENES/menu.png" id="2_ouk20"]
+[ext_resource type="Texture2D" uid="uid://di3b4f4dplbu1" path="res://CARPETADEIMAGENES/menuazul.JPG" id="3_mae5d"]
+
+[sub_resource type="Animation" id="Animation_ytr4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fondoazul:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4hy44"]
+resource_name = "fade away"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fondoazul:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l48gv"]
+_data = {
+&"RESET": SubResource("Animation_ytr4m"),
+&"fade away": SubResource("Animation_4hy44")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vsb4k"]
-bg_color = Color(0.4, 0.376471, 0.415686, 1)
+bg_color = Color(0.713726, 0.427451, 0.470588, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lti8b"]
 bg_color = Color(0.4, 0.376471, 0.415686, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hy44"]
-bg_color = Color(0.63827, 0.51675, 0.910192, 1)
+bg_color = Color(0.713726, 0.427451, 0.470588, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytr4m"]
 bg_color = Color(0.4, 0.376471, 0.415686, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 4
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -23,51 +80,62 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lti8b")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Titulo" type="Label" parent="."]
+z_index = 100
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_right = -1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -257.0
+offset_top = 55.0
+offset_right = 257.0
+offset_bottom = 195.0
 grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.92549, 0.839216, 0.85098, 1)
+theme_override_fonts/font = ExtResource("2_4hy44")
+theme_override_font_sizes/font_size = 120
+text = "Night on Fire"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="fondo" type="Node" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
+[node name="fondorosa" type="Sprite2D" parent="fondo"]
+position = Vector2(575, 325)
+texture = ExtResource("2_ouk20")
+
+[node name="fondoazul" type="Sprite2D" parent="fondo"]
+position = Vector2(573, 325)
+texture = ExtResource("3_mae5d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="fondo"]
+libraries = {
+&"": SubResource("AnimationLibrary_l48gv")
+}
+autoplay = "fade away"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="fondo"]
 anchors_preset = -1
 anchor_left = 0.514
-anchor_top = 0.526
+anchor_top = 0.5
 anchor_right = 0.514
 anchor_bottom = 0.526
-offset_left = -258.128
-offset_top = -97.848
-offset_right = 258.872
-offset_bottom = 98.152
+offset_left = 37.872
+offset_top = -74.0
+offset_right = 428.872
+offset_bottom = 124.152
 theme_override_constants/separation = 30
 
-[node name="play" type="Button" parent="VBoxContainer"]
+[node name="play" type="Button" parent="fondo/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 theme_override_styles/hover = SubResource("StyleBoxFlat_vsb4k")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lti8b")
 text = "JUGAR"
 
-[node name="quit" type="Button" parent="VBoxContainer"]
+[node name="quit" type="Button" parent="fondo/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 theme_override_styles/hover = SubResource("StyleBoxFlat_4hy44")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ytr4m")
 text = "SALIR"
 
-[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="fondo/VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="fondo/VBoxContainer/quit" to="." method="_on_quit_pressed"]

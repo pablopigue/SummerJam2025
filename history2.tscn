@@ -1,9 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://chbuchkocbrvw"]
+[gd_scene load_steps=12 format=3 uid="uid://chbuchkocbrvw"]
 
 [ext_resource type="Script" uid="uid://bhc4tldw57560" path="res://scripts/history_2.gd" id="1_juvl2"]
+[ext_resource type="Texture2D" uid="uid://b7qg6o8d6l048" path="res://CARPETADEIMAGENES/Bosque.JPG" id="2_0xisn"]
+[ext_resource type="Texture2D" uid="uid://h2ywtix34sil" path="res://CARPETADEIMAGENES/awelaculia.PNG" id="3_buc2d"]
+[ext_resource type="Texture2D" uid="uid://cbbieqllsn6ac" path="res://CARPETADEIMAGENES/bombommm.PNG" id="4_xcmvx"]
+[ext_resource type="Texture2D" uid="uid://mn16efchpv5y" path="res://CARPETADEIMAGENES/gasolinabrrr.PNG" id="5_dwkua"]
+[ext_resource type="Texture2D" uid="uid://ik72r88pc7gw" path="res://CARPETADEIMAGENES/morningwood.PNG" id="6_2ou3u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akj8p"]
+bg_color = Color(0.713726, 0.427451, 0.470588, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5jyf"]
 bg_color = Color(0.4, 0.376471, 0.415686, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xisn"]
+bg_color = Color(0.4, 0.376471, 0.415686, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_buc2d"]
+bg_color = Color(0.447059, 0.721569, 0.752941, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcmvx"]
+bg_color = Color(0.447059, 0.721569, 0.752941, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="history2" type="Control"]
 layout_mode = 3
@@ -11,35 +48,128 @@ anchors_preset = 0
 script = ExtResource("1_juvl2")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 1154.0
 offset_bottom = 651.0
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1150.0
-offset_bottom = 651.0
-color = Color(0.92549, 0.839216, 0.85098, 1)
+texture = ExtResource("2_0xisn")
 
 [node name="next" type="Button" parent="."]
 layout_mode = 0
-offset_left = 794.0
+offset_left = 968.0
 offset_top = 561.0
 offset_right = 1130.0
 offset_bottom = 628.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_akj8p")
 theme_override_styles/normal = SubResource("StyleBoxFlat_s5jyf")
-text = "NEXT"
+text = "SIGUIENTE"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 552.0
+offset_right = 193.0
+offset_bottom = 617.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_0xisn")
+text = "ANTERIOR"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 49.0
+offset_right = 259.0
+offset_bottom = 112.0
+color = Color(1, 1, 1, 0.678431)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 43.0
-offset_top = 52.0
-offset_right = 2017.0
-offset_bottom = 544.0
+offset_left = 57.0
+offset_top = 57.0
+offset_right = 250.0
+offset_bottom = 112.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "INVENTARIO"
 
-[connection signal="pressed" from="next" to="." method="_on_button_pressed"]
+[node name="Awelaculia" type="Sprite2D" parent="."]
+position = Vector2(170, 298)
+scale = Vector2(0.572261, 0.474609)
+texture = ExtResource("3_buc2d")
+
+[node name="Bombommm" type="Sprite2D" parent="."]
+position = Vector2(994, 333)
+scale = Vector2(0.695804, 0.662109)
+texture = ExtResource("4_xcmvx")
+
+[node name="Gasolinabrrr" type="Sprite2D" parent="."]
+position = Vector2(412, 309)
+scale = Vector2(0.555944, 0.488281)
+texture = ExtResource("5_dwkua")
+
+[node name="Morningwood" type="Sprite2D" parent="."]
+position = Vector2(689, 315)
+scale = Vector2(0.656177, 0.681641)
+texture = ExtResource("6_2ou3u")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 66.0
+offset_right = 1111.0
+offset_bottom = 188.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_buc2d")
+text = "QUEMAMOS COMO PIRÓMANOS ESTOS OBJETOS:
+SI ,TU ABUELA ES UN OBJETO: LAS LENTEJAS, COMO LAS 
+TETAS LAS MEJORES LAS DE LA AWELA"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 420.0
+offset_right = 191.0
+offset_bottom = 459.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_buc2d")
+text = "+2s"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="."]
+layout_mode = 0
+offset_left = 635.0
+offset_top = 423.0
+offset_right = 686.0
+offset_bottom = 462.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_buc2d")
+text = "+1s"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 0
+offset_left = 374.0
+offset_top = 421.0
+offset_right = 425.0
+offset_bottom = 460.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_buc2d")
+text = "+5s"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 847.0
+offset_top = 425.0
+offset_right = 1114.0
+offset_bottom = 547.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_xcmvx")
+text = "TU OBJETIVO ES 
+QUEMAR LA 
+BARRA DE PLUTONIO"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

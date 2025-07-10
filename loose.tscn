@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbcscq6ekast6"]
+
+[ext_resource type="Texture2D" uid="uid://b7qg6o8d6l048" path="res://CARPETADEIMAGENES/Bosque.JPG" id="1_2sh8h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2sh8h"]
+bg_color = Color(0.486275, 0.717647, 0.74902, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1151.0
+offset_bottom = 649.0
+texture = ExtResource("1_2sh8h")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 219.0
+offset_right = 813.0
+offset_bottom = 458.0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_2sh8h")
+text = "NO HAS CUMPLIDO
+ TU MISIÓN DE 
+CAUSAR UNA 
+CATÁSTROFE NUCLEAR"
+horizontal_alignment = 1

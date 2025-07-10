@@ -1,42 +1,72 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8myx6riuj3i8"]
+[gd_scene load_steps=7 format=3 uid="uid://c8myx6riuj3i8"]
 
-[ext_resource type="Script" uid="uid://cfxmcwmr2u2cc" path="res://history.gd" id="1_6vjho"]
+[ext_resource type="Script" uid="uid://daswhcyaj25yd" path="res://scripts/history.gd" id="1_sgca3"]
+[ext_resource type="Texture2D" uid="uid://b7qg6o8d6l048" path="res://CARPETADEIMAGENES/Bosque.JPG" id="2_sgca3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgca3"]
+bg_color = Color(0.713726, 0.427451, 0.470588, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5jyf"]
 bg_color = Color(0.4, 0.376471, 0.415686, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2yt5"]
+bg_color = Color(0.713726, 0.427451, 0.470588, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyfln"]
+bg_color = Color(0.4, 0.376471, 0.415686, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 
 [node name="history1" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_6vjho")
+script = ExtResource("1_sgca3")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 1154.0
 offset_bottom = 651.0
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1150.0
-offset_bottom = 651.0
-color = Color(0.92549, 0.839216, 0.85098, 1)
+texture = ExtResource("2_sgca3")
 
 [node name="next" type="Button" parent="."]
 layout_mode = 0
-offset_left = 794.0
+offset_left = 911.0
 offset_top = 561.0
 offset_right = 1130.0
 offset_bottom = 628.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_sgca3")
 theme_override_styles/normal = SubResource("StyleBoxFlat_s5jyf")
-text = "NEXT"
+text = "SIGUIENTE"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.639216)
+layout_mode = 0
+offset_left = 32.0
+offset_top = 37.0
+offset_right = 1126.0
+offset_bottom = 545.0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 43.0
-offset_top = 52.0
-offset_right = 2017.0
-offset_bottom = 544.0
+offset_left = 45.0
+offset_top = 43.0
+offset_right = 1123.0
+offset_bottom = 535.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Kapo es guardia forestal que se ha vuelto loco, porque cree que 
@@ -49,7 +79,19 @@ Cada noche, escucha susurros entre los árboles y siente la presencia
 de varios espíritus.
 
 Para acabar con esa maldición, se le ocurre hacer la fogata que
- conseguirá quemar esa presencia que provoca esas visiones y esa locura."
+conseguirá quemar esa presencia que provoca esas visiones y esa locura."
+
+[node name="back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 567.0
+offset_right = 263.0
+offset_bottom = 630.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_e2yt5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uyfln")
+text = "ANTERIOR"
 
 [connection signal="pressed" from="next" to="." method="_on_next_pressed"]
-[connection signal="pressed" from="next" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="back" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]

@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
 @export var speed = 200.0
-var health = 100
+@export var health: float = 100.0
+@export var damage_multiplier: float = 10.0
 @export var roll_speed = 400.0       
 @export var roll_duration = 0.3       
 @export var roll_cooldown = 1.0       
+@onready var hacha: Hacha = $Hacha
 
 var is_rolling = false
 var roll_timer = 0.0
@@ -17,6 +19,15 @@ var sonidopasos = false
 
 var footstep_delay = 0.5
 var footstep_timer = 0.0
+
+var num_items = 0
+var tengo_plutonio=false
+
+var first_time = true
+var getting_damage=false
+
+var cough_timer := 0.0
+
 
 func _ready():
 	randomize()
@@ -49,7 +60,9 @@ func _physics_process(delta):
 		else:
 			footstep_delay = 0.5
 		
-		if is_scared:
+		if getting_damage:
+			pass
+		elif is_scared and not getting_damage:
 			$AnimatedSprite2D.play("scare")
 		else:
 			$AnimatedSprite2D.play("walk")
@@ -72,8 +85,21 @@ func _physics_process(delta):
 			$AnimatedSprite2D.speed_scale = 1.0  
 		if input_vector.x < 0:
 			$AnimatedSprite2D.flip_h = false  # Mira a la izquierda
+			$Hacha/AnimatedSprite2D.flip_h=false
+			if not first_time:
+				$Hacha.position.x -=38
+				$Hacha.position.y -=9
+				$Hacha.rotate(-190)
+				first_time = true
 		elif input_vector.x > 0:
 			$AnimatedSprite2D.flip_h = true   # Mira a la derecha
+			$Hacha/AnimatedSprite2D.flip_h=true
+			if first_time:
+				$Hacha.position.x +=38
+				$Hacha.position.y +=9
+				$Hacha.rotate(190)
+				first_time = false
+			
 	else:
 		# Si no hay movimiento, detiene animación
 		$AnimatedSprite2D.stop()
@@ -93,7 +119,20 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("attack") and not is_rolling:
 		attack_in_direction(last_direction)
 
-
+func _process(delta: float) -> void:
+	if(hacha.fire_seconds == 0):
+		health -= delta * damage_multiplier
+		getting_damage=true
+		$AnimatedSprite2D.play("damage")
+		cough_timer += delta
+		if cough_timer >= 1.5:
+			$tos.play()
+			cough_timer = 0.0
+		if health <= 0.0:
+			get_tree().change_scene_to_file("res://loose.tscn")
+	else:
+		getting_damage=false
+		cough_timer = 1.5
 func start_roll():
 	is_rolling = true
 	roll_timer = roll_duration
@@ -105,22 +144,6 @@ func attack_in_direction(direction: Vector2):
 	attack.position = direction.normalized() * 30  
 	attack.rotation = direction.angle()
 	add_child(attack)
-	#AQUI NECESITO ANTORCHA PARA QUITARLE TIEMPO DE ILUMINACION A LA ANTORCHA
-
-
-func _on_hurt_box_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		take_damage(10) 
-
-func take_damage(amount: int):
-	health -= amount
-	print("¡Jugador recibió daño! Vida restante:",health)
-	if health <= 0:
-		die()
-
-func die():
-	print("¡Jugador muerto!")
-	queue_free()
 
 
 func _on_pick_up_area_area_entered(area: Area2D) -> void:
@@ -129,8 +152,20 @@ func _on_pick_up_area_area_entered(area: Area2D) -> void:
 
 
 func pick_up_item(item: Area2D) -> void:
-	#AQUI NO SE QUE HACER CON LOS ITEMS POR LO PRONTO LOS BORRO Y YA ME DIREIS
-	item.queue_free() 
+	if item.get_parent().is_in_group("branch"):
+		num_items+=1
+		$pickupsound.play()
+	elif item.get_parent().is_in_group("grandma"):
+		num_items+=2
+		$pickupsound.play()
+	elif item.get_parent().is_in_group("fuel"):
+		num_items+=5
+		$pickupsound.play()
+	else:
+		tengo_plutonio=true
+		$plutoniumsound.play()
+	
+	item.get_parent().queue_free() 
 
 
 func _on_scare_timer_timeout() -> void:
@@ -148,3 +183,23 @@ func play_scare_animation():
 	
 	await get_tree().create_timer(1.0).timeout  
 	is_scared = false
+
+
+func _on_dejar_items_body_entered(body: Node2D) -> void:
+	if body.is_in_group("body_fogata"):
+		var fogata: Fogata = body.get_parent()
+		
+		# Añadir objetos a la fogata
+		fogata.add_fire_seconds(num_items)
+		num_items = 0
+		if tengo_plutonio:
+			get_tree().change_scene_to_file("res://win.tscn")
+		
+		# Recargar hacha
+		hacha.reload()
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if(body.is_in_group("enemies")):
+		hacha.fire_seconds-=5
+		body.die()

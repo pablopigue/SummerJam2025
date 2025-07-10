@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://bafl1eflu4ahf"]
+
+[ext_resource type="Texture2D" uid="uid://bewuoacsda32f" path="res://CARPETADEIMAGENES/enemigo2.PNG" id="1_d5s3k"]
+[ext_resource type="Script" uid="uid://cshnbl8hi7lkh" path="res://enemigo_2.gd" id="1_e4o18"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4o18"]
+size = Vector2(103, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu1vk"]
+atlas = ExtResource("1_d5s3k")
+region = Rect2(0, 0, 673, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jxqi"]
+atlas = ExtResource("1_d5s3k")
+region = Rect2(673, 0, 673, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyckd"]
+atlas = ExtResource("1_d5s3k")
+region = Rect2(1346, 0, 673, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8pqi"]
+atlas = ExtResource("1_d5s3k")
+region = Rect2(2019, 0, 673, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkp8b"]
+atlas = ExtResource("1_d5s3k")
+region = Rect2(2692, 0, 673, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rbu3"]
+atlas = ExtResource("1_d5s3k")
+region = Rect2(3365, 0, 673, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oou4y"]
+atlas = ExtResource("1_d5s3k")
+region = Rect2(4038, 0, 673, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sxmi"]
+atlas = ExtResource("1_d5s3k")
+region = Rect2(4711, 0, 673, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cj74c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu1vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jxqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyckd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8pqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkp8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rbu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oou4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sxmi")
+}],
+"loop": true,
+"name": &"play_walk",
+"speed": 5.0
+}]
+
+[node name="enemigo2" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_e4o18")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-13, -26)
+shape = SubResource("RectangleShape2D_e4o18")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-11, -24)
+scale = Vector2(0.200893, 0.201172)
+sprite_frames = SubResource("SpriteFrames_cj74c")
+animation = &"play_walk"

@@ -5,9 +5,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2nx8b"]
 size = Vector2(49, 67)
 
-[node name="objectBranches" type="Node2D" groups=["recogibles"]]
+[node name="objectBranches" type="Node2D" groups=["grandma", "recogibles"]]
 
-[node name="pickArea" type="Area2D" parent="."]
+[node name="pickArea" type="Area2D" parent="." groups=["recogibles"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pickArea"]
 position = Vector2(-1.5, -1.5)

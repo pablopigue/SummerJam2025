@@ -5,14 +5,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_400um"]
 radius = 17.7781
 
-[node name="objectBranches" type="Node2D"]
+[node name="objectBranches" type="Node2D" groups=["branch", "recogibles"]]
 
-[node name="pickArea" type="Area2D" parent="."]
+[node name="pickArea" type="Area2D" parent="." groups=["recogibles"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="pickArea" groups=["recogibles"]]
-shape = SubResource("CircleShape2D_400um")
-
-[node name="appereance" type="Sprite2D" parent="."]
+[node name="appereance" type="Sprite2D" parent="pickArea"]
 position = Vector2(2, -1)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_400um")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickArea" groups=["recogibles"]]
+shape = SubResource("CircleShape2D_400um")

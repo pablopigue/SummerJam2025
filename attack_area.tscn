@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://cnofbrqfhb3gh" path="res://attack_area.gd" id="1_xtt7r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibhqr"]
-size = Vector2(29, 51)
+size = Vector2(62, 69)
 
 [node name="AttackArea" type="Area2D"]
 script = ExtResource("1_xtt7r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4.5, -1.5)
+position = Vector2(21, 1.5)
 shape = SubResource("RectangleShape2D_ibhqr")
 
 [node name="Timer" type="Timer" parent="."]

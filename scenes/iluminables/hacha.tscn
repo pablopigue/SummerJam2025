@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://baacvo6atmasb"]
+
+[ext_resource type="PackedScene" uid="uid://wxe0o8a76lwq" path="res://scenes/iluminables/iluminable.tscn" id="1_dceag"]
+[ext_resource type="Script" uid="uid://b646xfs7lc3yp" path="res://scripts/iluminables/hacha.gd" id="2_1ps0s"]
+[ext_resource type="Texture2D" uid="uid://e13kx14u6kal" path="res://CARPETADEIMAGENES/iluminables/hacha.PNG" id="2_5xncv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ps0s"]
+atlas = ExtResource("2_5xncv")
+region = Rect2(0, 0, 362, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r85ol"]
+atlas = ExtResource("2_5xncv")
+region = Rect2(362, 0, 362, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ek5d"]
+atlas = ExtResource("2_5xncv")
+region = Rect2(724, 0, 362, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vfvnk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ps0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r85ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ek5d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Hacha" instance=ExtResource("1_dceag")]
+script = ExtResource("2_1ps0s")
+fire_seconds = 30.0
+reload_seconds = 30.0
+grow_multiplier = 5.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(-8, -20)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_vfvnk")
+autoplay = "default"
+frame = 1
+frame_progress = 0.984276

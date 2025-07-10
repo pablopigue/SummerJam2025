@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://bcn7x7swud63f"]
+
+[ext_resource type="Script" uid="uid://1tiaacs0f8bh" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://5qx5o8wqmcj8" path="res://CARPETADEIMAGENES/enemigo.png" id="1_7k104"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1ltt"]
+size = Vector2(103, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
+atlas = ExtResource("1_7k104")
+region = Rect2(0, 0, 672, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi2p4"]
+atlas = ExtResource("1_7k104")
+region = Rect2(672, 0, 672, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iifgy"]
+atlas = ExtResource("1_7k104")
+region = Rect2(1344, 0, 672, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epg4t"]
+atlas = ExtResource("1_7k104")
+region = Rect2(2016, 0, 672, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yqyl"]
+atlas = ExtResource("1_7k104")
+region = Rect2(2688, 0, 672, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wujgv"]
+atlas = ExtResource("1_7k104")
+region = Rect2(3360, 0, 672, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hb8ge"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gyqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi2p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iifgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epg4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yqyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wujgv")
+}],
+"loop": true,
+"name": &"play_walk",
+"speed": 5.0
+}]
+
+[node name="Enemigo" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_4gyqm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-13, -26)
+shape = SubResource("RectangleShape2D_e1ltt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-11, -24)
+scale = Vector2(0.200893, 0.201172)
+sprite_frames = SubResource("SpriteFrames_hb8ge")
+animation = &"play_walk"
+frame_progress = 0.105846

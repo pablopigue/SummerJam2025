@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://hosiaxhe5ytf"]
+
+[ext_resource type="Texture2D" uid="uid://ckdl1bvosknxs" path="res://icon.svg" id="1_xkpgw"]
+[ext_resource type="PackedScene" uid="uid://c1rewkpj7lv4k" path="res://scenes/iluminables/fogata.tscn" id="2_xkpgw"]
+
+[sub_resource type="Environment" id="Environment_xkpgw"]
+background_mode = 3
+ssr_fade_in = 0.033797
+ssao_radius = 0.01
+ssao_intensity = 9.92
+ssao_power = 0.0260055
+adjustment_enabled = true
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1000, 1000)
+offset_left = 40.0
+offset_top = -210.0
+offset_right = 1040.0
+offset_bottom = 790.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(633, 392)
+texture = ExtResource("1_xkpgw")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(398, 350)
+texture = ExtResource("1_xkpgw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(503, 312)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xkpgw")
+
+[node name="Fogata" parent="." instance=ExtResource("2_xkpgw")]
+position = Vector2(521, 280)
+fire_seconds = 300.0

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://wxe0o8a76lwq"]
+
+[ext_resource type="Script" uid="uid://73ypf0ng75cg" path="res://scripts/iluminables/iluminable.gd" id="2_fv3ng"]
+
+[sub_resource type="Gradient" id="Gradient_ufm4y"]
+offsets = PackedFloat32Array(0, 0.194805, 0.941558, 1)
+colors = PackedColorArray(0.721569, 0.52549, 0.0431373, 1, 0.721569, 0.52549, 0.0431373, 1, 0.411765, 0.411765, 0.411765, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gvrgw"]
+gradient = SubResource("Gradient_ufm4y")
+fill = 1
+fill_from = Vector2(0.490826, 0.495413)
+fill_to = Vector2(0.834862, 0.155963)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4fk4o"]
+radius = 200.0
+
+[node name="Iluminable" type="Node2D"]
+script = ExtResource("2_fv3ng")
+
+[node name="Light" type="PointLight2D" parent="."]
+color = Color(1, 0.980392, 0.803922, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_gvrgw")
+texture_scale = 6.25
+
+[node name="SafeZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeZone"]
+shape = SubResource("CircleShape2D_4fk4o")
+debug_color = Color(0, 0.595, 0.7, 0)

@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://c1rewkpj7lv4k"]
+
+[ext_resource type="PackedScene" uid="uid://wxe0o8a76lwq" path="res://scenes/iluminables/iluminable.tscn" id="1_pokhq"]
+[ext_resource type="Script" uid="uid://0f5fr72plssr" path="res://scripts/iluminables/fogata.gd" id="2_xq7kd"]
+[ext_resource type="Texture2D" uid="uid://bm81gyqa0xyop" path="res://CARPETADEIMAGENES/iluminables/fuego.PNG" id="3_bmak0"]
+[ext_resource type="Texture2D" uid="uid://bngkf8g5f866d" path="res://CARPETADEIMAGENES/iluminables/palos.PNG" id="4_ysom5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysom5"]
+atlas = ExtResource("3_bmak0")
+region = Rect2(0, 0, 361, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdffp"]
+atlas = ExtResource("3_bmak0")
+region = Rect2(361, 0, 361, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdjwo"]
+atlas = ExtResource("3_bmak0")
+region = Rect2(722, 0, 361, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6uyu"]
+atlas = ExtResource("3_bmak0")
+region = Rect2(1083, 0, 361, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ylmh"]
+atlas = ExtResource("3_bmak0")
+region = Rect2(1444, 0, 361, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tigii"]
+atlas = ExtResource("3_bmak0")
+region = Rect2(1805, 0, 361, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5q8a2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysom5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdffp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdjwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6uyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ylmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tigii")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmak0"]
+radius = 27.0185
+
+[node name="Fogata" instance=ExtResource("1_pokhq")]
+script = ExtResource("2_xq7kd")
+fire_seconds = 5.0
+fire_color = Color(1, 1, 1, 1)
+grow_multiplier = 100.0
+
+[node name="Light" parent="." index="0"]
+color = Color(0.721569, 0.52549, 0.0431373, 1)
+
+[node name="Palos" type="Sprite2D" parent="." index="2"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_ysom5")
+
+[node name="Fuego" type="AnimatedSprite2D" parent="." index="3"]
+modulate = Color(0.721569, 0.52549, 0.0431373, 1)
+position = Vector2(-2, -27)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_5q8a2")
+autoplay = "default"
+frame = 4
+frame_progress = 0.899826
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="4" groups=["body_fogata"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+shape = SubResource("CircleShape2D_bmak0")

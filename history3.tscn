@@ -1,9 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6vamfvjppqax"]
+[gd_scene load_steps=10 format=3 uid="uid://c6vamfvjppqax"]
 
 [ext_resource type="Script" uid="uid://b8byfvlofa6fs" path="res://scripts/history_3.gd" id="1_wgymo"]
+[ext_resource type="Texture2D" uid="uid://b7qg6o8d6l048" path="res://CARPETADEIMAGENES/Bosque.JPG" id="2_r32fi"]
+[ext_resource type="Texture2D" uid="uid://cxy2gqemwe7ep" path="res://CARPETADEIMAGENES/ciervoSolo.PNG" id="3_q1c8c"]
+[ext_resource type="Texture2D" uid="uid://bedq6n3jpalry" path="res://CARPETADEIMAGENES/palomasola.PNG" id="4_8g5wl"]
+[ext_resource type="Texture2D" uid="uid://c7aqeqipttahi" path="res://CARPETADEIMAGENES/jabali.PNG" id="5_6bpms"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r32fi"]
+bg_color = Color(0.713726, 0.427451, 0.470588, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5jyf"]
 bg_color = Color(0.4, 0.376471, 0.415686, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8xtc"]
+bg_color = Color(0.713726, 0.427451, 0.470588, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxom4"]
+bg_color = Color(0.4, 0.376471, 0.415686, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 
 [node name="history3" type="Control"]
 layout_mode = 3
@@ -11,35 +40,65 @@ anchors_preset = 0
 script = ExtResource("1_wgymo")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 1154.0
 offset_bottom = 651.0
+texture = ExtResource("2_r32fi")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="TextureRect"]
 layout_mode = 0
-offset_right = 1150.0
-offset_bottom = 651.0
-color = Color(0.92549, 0.839216, 0.85098, 1)
+offset_left = 37.0
+offset_top = 51.0
+offset_right = 234.0
+offset_bottom = 107.0
+color = Color(1, 1, 1, 0.678431)
 
 [node name="next" type="Button" parent="."]
 layout_mode = 0
-offset_left = 794.0
+offset_left = 968.0
 offset_top = 561.0
 offset_right = 1130.0
 offset_bottom = 628.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_r32fi")
 theme_override_styles/normal = SubResource("StyleBoxFlat_s5jyf")
-text = "NEXT"
+text = "SIGUIENTE"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 43.0
-offset_top = 52.0
-offset_right = 2017.0
-offset_bottom = 544.0
+offset_left = 54.0
+offset_top = 57.0
+offset_right = 210.0
+offset_bottom = 108.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "ENEMIGOS"
 
-[connection signal="pressed" from="next" to="." method="_on_button_pressed"]
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 561.0
+offset_right = 185.0
+offset_bottom = 624.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_a8xtc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cxom4")
+text = "ANTERIOR"
+
+[node name="CiervoSolo" type="Sprite2D" parent="."]
+position = Vector2(218, 313)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_q1c8c")
+
+[node name="Palomasola" type="Sprite2D" parent="."]
+position = Vector2(927, 309)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_8g5wl")
+
+[node name="Jabali" type="Sprite2D" parent="."]
+position = Vector2(564, 294)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_6bpms")
+
 [connection signal="pressed" from="next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

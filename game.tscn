@@ -1,22 +1,78 @@
-[gd_scene load_steps=7 format=3 uid="uid://q8vvfs11w5na"]
+[gd_scene load_steps=16 format=3 uid="uid://q8vvfs11w5na"]
 
 [ext_resource type="PackedScene" uid="uid://c24qoi6cb20vh" path="res://fogata.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://cayxahy3xs3vh" path="res://player.tscn" id="1_feb5d"]
 [ext_resource type="Script" uid="uid://ddy3f56xd6g8x" path="res://game.gd" id="1_ryrav"]
 [ext_resource type="PackedScene" uid="uid://s6y34cdm522j" path="res://llamita.tscn" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://rxkts7h0mmai" path="res://CARPETADEIMAGENES/Fondo.JPG" id="2_eow3j"]
 [ext_resource type="Script" uid="uid://copdu70b2cuak" path="res://scripts/indicador_fogata.gd" id="3_fc0e3"]
+[ext_resource type="Script" uid="uid://vxll78rqmjx3" path="res://tiempofogata.gd" id="5_mfdv2"]
 [ext_resource type="AudioStream" uid="uid://dj2uimbshv7mf" path="res://MUSICAYSONIDOS/TEMAPRINCIPAL.ogg" id="6_eow3j"]
+[ext_resource type="PackedScene" uid="uid://c1rewkpj7lv4k" path="res://scenes/iluminables/fogata.tscn" id="8_j5wjh"]
+[ext_resource type="PackedScene" uid="uid://proo51ilgve" path="res://arbol.tscn" id="9_vef74"]
+[ext_resource type="PackedScene" uid="uid://dms0hixnpdop1" path="res://roca.tscn" id="10_hve3p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hve3p"]
+bg_color = Color(0.713726, 0.427451, 0.470588, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j5wjh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_eow3j"]
+distance = 1.0
+
+[sub_resource type="Environment" id="Environment_mfdv2"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_exposure = 0.33
+tonemap_white = 0.62
+glow_enabled = true
+glow_bloom = 0.26
+glow_blend_mode = 4
+adjustment_enabled = true
+adjustment_brightness = 1.17
+adjustment_contrast = 1.17
 
 [node name="game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ryrav")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -2193.0
+offset_top = -1989.0
+offset_right = 2234.0
+offset_bottom = 2201.0
+texture = ExtResource("2_eow3j")
+
+[node name="fogata" parent="." instance=ExtResource("1_80nbo")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("1_feb5d")]
 position = Vector2(123, 84)
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 
-[node name="fogata" parent="." instance=ExtResource("1_80nbo")]
+[node name="Tiempofogata" type="Label" parent="Player/Camera2D2"]
+z_index = 1
+offset_left = 350.0
+offset_top = -312.0
+offset_right = 563.0
+offset_bottom = -279.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_hve3p")
+text = "X "
+horizontal_alignment = 2
+script = ExtResource("5_mfdv2")
+
+[node name="Label" type="Label" parent="Player/Camera2D2"]
+z_index = 1
+offset_left = 360.0
+offset_top = -310.0
+offset_right = 480.0
+offset_bottom = -287.0
+text = "Tiempo fogata: "
 
 [node name="indicador fogata" type="CanvasLayer" parent="."]
 script = ExtResource("3_fc0e3")
@@ -27,3 +83,168 @@ position = Vector2(-18, 285)
 [node name="musicafondo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_eow3j")
 volume_db = 3.811
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, 1550)
+shape = SubResource("WorldBoundaryShape2D_j5wjh")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(1, -1550)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_j5wjh")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-1550, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_j5wjh")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(1550, 0)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_eow3j")
+
+[node name="Fogata" parent="." instance=ExtResource("8_j5wjh")]
+fire_seconds = 60.0
+grow_multiplier = 10.0
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="arbol" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(-1245, -334)
+
+[node name="arbol2" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(-1169, 416)
+
+[node name="arbol3" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(-137, -570)
+
+[node name="arbol4" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(1080, -447)
+
+[node name="arbol5" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(1231, 227)
+
+[node name="arbol6" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(979, 635)
+
+[node name="arbol7" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(-69, 880)
+
+[node name="arbol8" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(-1618, -12)
+
+[node name="arbol9" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(-1604, -255)
+
+[node name="arbol10" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(-1650, 1022)
+
+[node name="arbol11" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(-1172, 1518)
+
+[node name="arbol12" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(1976, 1312)
+
+[node name="arbol13" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(1783, -292)
+
+[node name="arbol14" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(1397, -1018)
+
+[node name="arbol15" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(-882, -1123)
+
+[node name="arbol16" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(528, -1224)
+
+[node name="arbol17" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(-409, 1722)
+
+[node name="arbol18" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(352, 1439)
+
+[node name="arbol19" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(981, 1316)
+
+[node name="arbol20" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(1414, 1754)
+
+[node name="arbol21" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(2044, 360)
+
+[node name="arbol22" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(-543, -1004)
+
+[node name="arbol23" parent="Environment" instance=ExtResource("9_vef74")]
+position = Vector2(619, -845)
+
+[node name="roca" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(-1073, 750)
+
+[node name="roca2" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(-568, 933)
+
+[node name="roca3" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(303, 655)
+
+[node name="roca4" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(-935, 84)
+
+[node name="roca5" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(-694, -519)
+
+[node name="roca6" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(-450, -367)
+
+[node name="roca7" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(372, -151)
+
+[node name="roca8" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(211, -524)
+
+[node name="roca9" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(974, -96)
+
+[node name="roca10" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(1309, 869)
+
+[node name="roca11" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(-708, 1347)
+
+[node name="roca12" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(1792, 1480)
+
+[node name="roca13" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(1682, 786)
+
+[node name="roca14" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(-1075, -877)
+
+[node name="roca15" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(142, -933)
+
+[node name="roca16" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(951, -822)
+
+[node name="roca17" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(1553, -583)
+
+[node name="roca18" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(-1365, 1039)
+
+[node name="roca19" parent="Environment" instance=ExtResource("10_hve3p")]
+position = Vector2(-1530, 510)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mfdv2")
